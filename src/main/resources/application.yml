@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 1234
+    url: jdbc:mysql://127.0.0.1:3306/sell
+  jpa:
+    show-sql: true
+server:
+  context-path: /sell
+logging:
+  pattern:
+    console: "%d - %msg%n"
+#    path: /var/log/tomcat/
+    file: /var/log/tomcat/sell.log
+    level: debug
