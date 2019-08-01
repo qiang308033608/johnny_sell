@@ -34,9 +34,9 @@ public class OrderDetailRepositoryTest {
     }
 
     @Test
-    public void findByOrderId() {
-        List<OrderDetail> orderId = orderDetailRepository.findByOrderId(ORDERID);
-        Assert.assertNotEquals(0,orderId.size());
-        System.out.println(orderId);
+        public void findByOrderId() {
+            List<OrderDetail> orderId = orderDetailRepository.findByOrderId(ORDERID);
+            Assert.assertNotEquals(0,orderId.size());
+            System.out.println(orderId);
     }
 }

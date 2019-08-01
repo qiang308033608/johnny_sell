@@ -23,5 +23,6 @@ public interface ProductService {
 
 //  加库存
 
+
 //  减库存
 }
