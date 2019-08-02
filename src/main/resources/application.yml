@@ -6,6 +6,9 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/sell?charactorEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+#  jackson.default-property-inclusion: non_null 属性为null在前端页面被过滤
+#  jackson:
+#    default-property-inclusion: non_null
 server:
   context-path: /sell
 #logging:
@@ -14,3 +17,4 @@ server:
 ##    path: /var/log/tomcat/
 #    file: /var/log/tomcat/sell.log
 #    level: debug
+
