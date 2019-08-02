@@ -3,7 +3,6 @@ package com.imooc.sell.dto;
 import com.imooc.sell.dataobject.OrderDetail;
 import lombok.Data;
 
-import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +40,5 @@ public class OrderDTO {
     /** 更新时间. */
     private Date updateTime;
 
-    @Transient
     private List<OrderDetail> orderDetailList;
 }
