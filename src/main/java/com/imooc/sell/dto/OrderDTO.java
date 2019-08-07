@@ -1,6 +1,5 @@
 package com.imooc.sell.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.serializer.Date2LongSerializer;
@@ -47,4 +46,4 @@ public class OrderDTO {
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;
-}
+        }

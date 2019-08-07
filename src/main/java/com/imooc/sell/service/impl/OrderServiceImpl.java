@@ -14,6 +14,7 @@ import com.imooc.sell.exception.SellException;
 import com.imooc.sell.repository.OrderDetailRepository;
 import com.imooc.sell.repository.OrderMasterRepository;
 import com.imooc.sell.service.OrderService;
+import com.imooc.sell.service.PayService;
 import com.imooc.sell.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +44,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     BigDecimal orderAmount=new BigDecimal(BigInteger.ZERO);
     String orderId=KeyUtil.genUniqueKey();
@@ -114,9 +118,18 @@ public class OrderServiceImpl implements OrderService {
 
         List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
 
-//        Page<OrderDTO> orderDTOPage =new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());
-
         return new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());
+    }
+    /*
+    * 卖家端查询列表
+    * */
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+
+        return new PageImpl<>(orderDTOList,pageable,orderMasterPage.getTotalElements());
     }
 
     @Override
@@ -152,6 +165,7 @@ public class OrderServiceImpl implements OrderService {
         //如果已支付，给用户退款
         if (orderDTO.getPayStatus().equals(PayStatusEnums.SUCCESS.getCode())){
             //TODO
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }

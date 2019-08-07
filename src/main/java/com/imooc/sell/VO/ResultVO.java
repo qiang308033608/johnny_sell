@@ -2,11 +2,15 @@ package com.imooc.sell.VO;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
+
 /*
 * Http返回的最外层对象
 * */
 @Data
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
+
 
     /** 错误码.*/
     private Integer code;

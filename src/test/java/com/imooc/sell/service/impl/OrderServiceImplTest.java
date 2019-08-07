@@ -26,7 +26,7 @@ public class OrderServiceImplTest {
     @Autowired
     private OrderServiceImpl orderService;
 
-    private String BUYER_OPENID="3213213";
+    private String BUYER_OPENID="308033608";
 
     private String ORDER_ID="1564652486586327629";
 
@@ -35,7 +35,7 @@ public class OrderServiceImplTest {
 
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setBuyerName("廉强");
-        orderDTO.setBuyerPhone("32132132132");
+        orderDTO.setBuyerPhone("18513666666");
         orderDTO.setBuyerAddress("中南海");
         orderDTO.setBuyerOpenid(BUYER_OPENID);
 
@@ -44,7 +44,7 @@ public class OrderServiceImplTest {
 
         OrderDetail o1=new OrderDetail();
         o1.setProductId("1001");
-        o1.setProductQuantity(1);
+        o1.setProductQuantity(10);
         orderDetailList.add(o1);
 
         orderDTO.setOrderDetailList(orderDetailList);
@@ -68,6 +68,15 @@ public class OrderServiceImplTest {
         log.info("【查询单个订单】 result={}",orderServiceList);
         Assert.assertNotEquals(0,orderServiceList.getTotalElements());
     }
+    @Test
+    public void list(){
+        PageRequest request=new PageRequest(0,2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(request);
+//        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
+        //判断语句的统一写法。
+        Assert.assertTrue("查询所有的订单列表", orderDTOPage.getTotalElements() > 0);
+    }
+
 
     @Test
     public void cancel() {
