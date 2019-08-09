@@ -3,7 +3,7 @@ package com.imooc.sell.enums;
 import lombok.Getter;
 
 @Getter
-public enum PayStatusEnums {
+public enum PayStatusEnums implements CodeEnums{
     WAIT(0,"等待支付"),
     SUCCESS(1,"支付成功"),
 

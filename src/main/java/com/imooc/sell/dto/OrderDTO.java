@@ -1,8 +1,12 @@
 package com.imooc.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.imooc.sell.Util.EnumsUtil;
 import com.imooc.sell.dataobject.OrderDetail;
-import com.imooc.sell.serializer.Date2LongSerializer;
+import com.imooc.sell.Util.serializer.Date2LongSerializer;
+import com.imooc.sell.enums.OrderStatusEnums;
+import com.imooc.sell.enums.PayStatusEnums;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -45,5 +49,18 @@ public class OrderDTO {
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
-    private List<OrderDetail> orderDetailList;
-        }
+    List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnums getOrderStatusEnums(){
+        return EnumsUtil.getByCode(orderStatus,OrderStatusEnums.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnums getPayStatusEnums(){
+        return EnumsUtil.getByCode(payStatus,PayStatusEnums.class);
+    }
+
+    }
+
+
